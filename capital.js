@@ -1,5 +1,6 @@
 const DiscordJS = require('discord.js');
 const WOKCommands = require('wokcommands');
+const fs = require('fs') 
 
 const client = new DiscordJS.Client({
   partials: ['MESSAGE', 'REACTION'],
@@ -40,5 +41,10 @@ client.on('ready', () => {
     ])
 })
 
-client.login('Nzk1NTc1MTM3NjU0ODAwNDE2.X_LXFQ.76eZ4jrCxAQcL6eYMe1hMcNRMA8');
+fs.readFile('token.txt', 'utf-8', (err, data) => { 
+  if (err) throw err;
+  client.login(data);
+}) 
+
+
 
